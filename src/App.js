@@ -12,10 +12,15 @@ class App extends Component {
     ],
   };
 
+  switchPersonStateHandler = () => {
+    console.log("was clicked?");
+  }
+
   render() {
     return (
       <div className="App">
         <h1>This is a test person page.</h1>
+        <button onClick={this.switchPersonStateHandler}>Switch person state</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Janmo Janmo ka nata</Person>
