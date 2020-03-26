@@ -10,6 +10,7 @@ class App extends Component {
       {name:"Bharti", age:25},
       {name:"Roharti", age:55}
     ],
+    visibility: false,
   };
 
   switchPersonStateHandler = () => {
@@ -20,6 +21,11 @@ class App extends Component {
         {name:"Roharti", age:55}
       ],
     });
+  }
+
+  togglePersonsHandler = () => {
+    let toggleVisibility = this.state.visibility;
+    this.setState({visibility : !toggleVisibility});
   }
 
   switchNameHandler = event => {
@@ -36,10 +42,14 @@ class App extends Component {
     return (
       <div className="App">
         <h1>This is a test person page.</h1>
-        <button onClick={this.switchPersonStateHandler}>Switch person state</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} change={this.switchNameHandler}/>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Janmo Janmo ka nata</Person>
+        <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {this.state.visibility ?
+          <div>
+            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} change={this.switchNameHandler}/>
+            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Janmo Janmo ka nata</Person>
+          </div> : null
+        }
       </div>
     );
   }
