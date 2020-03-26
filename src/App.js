@@ -8,7 +8,8 @@ class App extends Component {
     persons : [
       {name:"Rohit", age:30},
       {name:"Bharti", age:25},
-      {name:"Roharti", age:55}
+      {name:"Roharti", age:55},
+      {name:"JayDee", age:20},
     ],
     visibility: false,
   };
@@ -43,11 +44,11 @@ class App extends Component {
     let persons = null;
 
     if(this.state.visibility) {
-      persons = <div>
-                  <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-                  <Person name={this.state.persons[1].name} age={this.state.persons[1].age} change={this.switchNameHandler}/>
-                  <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>Janmo Janmo ka nata</Person>
-                </div>
+      persons = (<div>
+        {this.state.persons.map(p => {
+          return <Person name={p.name} age={p.age}/>
+        })}
+      </div>);
     }
 
     return (
