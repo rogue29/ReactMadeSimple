@@ -6,10 +6,10 @@ class App extends Component {
 
   state = {
     persons : [
-      {name:"Rohit", age:30},
-      {name:"Bharti", age:25},
-      {name:"Roharti", age:55},
-      {name:"JayDee", age:20},
+      {aindex:1,name:"Rohit", age:30},
+      {aindex:2,name:"Bharti", age:25},
+      {aindex:3,name:"Roharti", age:55},
+      {aindex:4,name:"JayDee", age:20},
     ],
     visibility: false,
   };
@@ -52,7 +52,8 @@ class App extends Component {
     if(this.state.visibility) {
       persons = (<div>
         {this.state.persons.map((p, index) => {
-          return <Person 
+          return <Person
+            key={p.aindex}
             name={p.name} 
             age={p.age}
             deleted={() => this.deletePersonHandler(index)} />
