@@ -29,6 +29,12 @@ class App extends Component {
     this.setState({visibility : !toggleVisibility});
   }
 
+  deletePersonHandler = index => {
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+    this.setState({persons : persons});
+  }
+
   switchNameHandler = event => {
     this.setState({
       persons : [
@@ -45,8 +51,11 @@ class App extends Component {
 
     if(this.state.visibility) {
       persons = (<div>
-        {this.state.persons.map(p => {
-          return <Person name={p.name} age={p.age}/>
+        {this.state.persons.map((p, index) => {
+          return <Person 
+            name={p.name} 
+            age={p.age}
+            deleted={() => this.deletePersonHandler(index)} />
         })}
       </div>);
     }
