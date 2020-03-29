@@ -21,8 +21,17 @@ class App extends Component {
 
   deletePersonHandler = personAindex => {
     const persons = [...this.state.persons];
-    let index = persons.findIndex((p) => p.aindex === personAindex);
+    let index = persons.findIndex(p => p.aindex === personAindex);
     persons.splice(index, 1);
+    this.setState({persons : persons});
+  }
+
+  changeNameHandler = (event, personAindex) => {
+    const personIndex = this.state.persons.findIndex(p => p.aindex === personAindex);
+    const person = {...this.state.persons[personIndex]};
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
     this.setState({persons : persons});
   }
 
@@ -37,7 +46,8 @@ class App extends Component {
             key={p.aindex}
             name={p.name} 
             age={p.age}
-            deleted={() => this.deletePersonHandler(p.aindex)} />
+            deleted={() => this.deletePersonHandler(p.aindex)}
+            change={(event) => this.changeNameHandler(event, p.aindex)} />
         })}
       </div>);
     }
