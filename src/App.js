@@ -14,16 +14,6 @@ class App extends Component {
     visibility: false,
   };
 
-  switchPersonStateHandler = () => {
-    this.setState({
-      persons : [
-        {name:"Jack", age:29},
-        {name:"Bharti", age:25},
-        {name:"Roharti", age:55}
-      ],
-    });
-  }
-
   togglePersonsHandler = () => {
     let toggleVisibility = this.state.visibility;
     this.setState({visibility : !toggleVisibility});
@@ -33,16 +23,6 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.splice(index, 1);
     this.setState({persons : persons});
-  }
-
-  switchNameHandler = event => {
-    this.setState({
-      persons : [
-        {name:"Rohit", age:30},
-        {name:event.target.value, age:25},
-        {name:"Roharti", age:55}
-      ],
-    });
   }
 
   render() {
