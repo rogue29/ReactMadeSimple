@@ -19,8 +19,9 @@ class App extends Component {
     this.setState({visibility : !toggleVisibility});
   }
 
-  deletePersonHandler = index => {
+  deletePersonHandler = personAindex => {
     const persons = [...this.state.persons];
+    let index = persons.findIndex((p) => p.aindex === personAindex);
     persons.splice(index, 1);
     this.setState({persons : persons});
   }
@@ -31,12 +32,12 @@ class App extends Component {
 
     if(this.state.visibility) {
       persons = (<div>
-        {this.state.persons.map((p, index) => {
+        {this.state.persons.map(p => {
           return <Person
             key={p.aindex}
             name={p.name} 
             age={p.age}
-            deleted={() => this.deletePersonHandler(index)} />
+            deleted={() => this.deletePersonHandler(p.aindex)} />
         })}
       </div>);
     }
